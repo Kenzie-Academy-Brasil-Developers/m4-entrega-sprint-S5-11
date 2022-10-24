@@ -14,7 +14,7 @@ const updateUserService = async (
   });
 
   if (!findUser) {
-    return ["User not found", 404];
+    throw new Error("user not found");
   }
 
   await userRepository.update(id, {

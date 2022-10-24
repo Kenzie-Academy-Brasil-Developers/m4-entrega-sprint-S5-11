@@ -15,7 +15,7 @@ class Schedules {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @CreateDateColumn({ type: "timestamp" })
+  @CreateDateColumn()
   date: Date;
 
   @Column("time")
@@ -25,7 +25,7 @@ class Schedules {
   userid: User;
 
   @ManyToOne(() => Property)
-  propertyId: Property;
+  propertieId: Property;
 }
 
 export { Schedules };

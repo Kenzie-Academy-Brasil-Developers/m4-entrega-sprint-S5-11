@@ -7,16 +7,14 @@ class Address {
   id: string;
   @Column({ length: 60 })
   district: string;
-  @Column({ length: 120 })
+  @Column({ length: 8 })
   zipCode: string;
-  @Column({ length: 60 })
+  @Column({ length: 60, nullable: true })
   number: string;
   @Column({ length: 60 })
   city: string;
-  @Column({ length: 60 })
+  @Column({ length: 2 })
   state: string;
-  @OneToOne(() => Property, (Property) => Property.addressId)
-  Property: Property;
 }
 
 export { Address };

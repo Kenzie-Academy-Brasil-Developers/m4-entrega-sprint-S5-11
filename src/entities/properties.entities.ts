@@ -7,6 +7,7 @@ import {
   ManyToOne,
   OneToMany,
   OneToOne,
+  JoinColumn,
 } from "typeorm";
 
 import { Schedules } from "./shedule.entities";
@@ -21,19 +22,20 @@ class Property {
   id: string;
   @Column({ default: false })
   sold: boolean;
-  @Column({ precision: 12, scale: 2 })
+  @Column({ type: "decimal", precision: 12, scale: 2 })
   value: number;
-  @Column({ type: "integer" })
+  @Column()
   size: string;
   @CreateDateColumn()
   createdAt: Date;
   @UpdateDateColumn()
   updatedAt: Date;
-  @ManyToOne(() => Category)
-  categoryId: Category[];
-  @OneToMany(() => Schedules, (Schedules) => Schedules.propertyId)
+  @ManyToOne(() => Category, (category) => category.property)
+  categoryId: Category;
+  @OneToMany(() => Schedules, (Schedules) => Schedules.propertieId)
   Schedules: Schedules;
-  @OneToOne(() => Address)
+  @OneToOne(() => Address, { eager: true })
+  @JoinColumn()
   addressId: Address;
 }
 
